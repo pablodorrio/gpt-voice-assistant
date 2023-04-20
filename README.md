@@ -17,7 +17,7 @@ export OPENAI_API_KEY="YOUR_OPENAI_API_KEY"
 
 For Windows users:
 ```powershell
-$Env:<variable-name> = "<new-value>"
+$Env:OPENAI_API_KEY="YOUR_OPENAI_API_KEY"
 ```
 
 ## Usage
