@@ -10,7 +10,7 @@ import openai
 import pyttsx3
 import speech_recognition as sr
 
-from commands import EXIT_COMMANDS
+from commands import ACTIVATE_COMMANDS, DEACTIVATE_COMMANDS, EXIT_COMMANDS
 
 openai.api_key = os.getenv("OPENAI_API_KEY")
 
@@ -44,20 +44,31 @@ def speak(text: str) -> None:
 
 
 exit_app = False
-recognizer = sr.Recognizer()
+active = False
 
 while not exit_app:
     try:
         with sr.Microphone() as source:
+            recognizer = sr.Recognizer()
             recognizer.adjust_for_ambient_noise(source, duration=0.2)
             audio = recognizer.listen(source)
 
             text = recognizer.recognize_google(audio, language="es-ES").lower()
+            print(text)
 
-            if text in EXIT_COMMANDS:
+            if text in ACTIVATE_COMMANDS:
+                active = True
+            elif text in DEACTIVATE_COMMANDS:
+                active = False
+            elif text in EXIT_COMMANDS:
+                active = False
                 exit_app = True
-            else:
-                speak(gpt_response(text))
+
+            if active:
+                response = gpt_response(text)
+                print(response)
+                speak(response)
+
     except sr.UnknownValueError:
         recognizer = sr.Recognizer()
         continue
