@@ -67,7 +67,7 @@ Say "Apagar gpt" to permanently turn off the assistant (it will no longer start 
 
 ## Limitations
 
-Currently, the assistant is only guaranteed to work correctly in Spanish. However, support for many more languages is coming soon.
+Currently, the assistant is only guaranteed to work correctly in Spanish. However, support for many more languages is coming soon (see the issues for more information).
 
 ## Contributing
 
